@@ -1,0 +1,14 @@
+# Ignore Python cache and compiled files
+__pycache__/
+*.pyc
+
+# Ignore virtual environments
+venv/
+tf-env/
+.venv/
+
+# Ignore model weights
+*.h5
+
+# Ignore editor configs
+.vscode/

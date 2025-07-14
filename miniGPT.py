@@ -6,14 +6,11 @@ tf.config.threading.set_intra_op_parallelism_threads(2)
 tf.config.threading.set_inter_op_parallelism_threads(2)
 
 # ------------------------------
-# Data Preparation
+# Data Preparation & Hyperparameters
 # ------------------------------
 with open("tiny_shakespeare.txt", "r", encoding="utf-8") as f:
     text = f.read().lower()
-
-# ------------------------------
-# Hyperparameters
-# ------------------------------
+    
 vocab = sorted(set(text))
 vocab_size = len(vocab)
 embed_dim = 256
@@ -37,10 +34,10 @@ def encode(s):
 def decode(ids):
     return ''.join([idx2char[i] for i in ids])
 
-
-
 data = np.array(encode(text), dtype=np.int32)
 print("Dataset size:", len(data))
+
+
 
 def get_batch(data, block_size, batch_size):
     ix = np.random.randint(0, len(data) - block_size - 1, size=(batch_size,))
